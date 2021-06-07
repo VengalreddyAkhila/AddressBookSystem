@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 
 namespace AddressBookProgram
@@ -56,8 +55,11 @@ namespace AddressBookProgram
                 Console.WriteLine("Zipcode: " + contact.zipcode);
                 Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
                 Console.WriteLine("Email id: " + contact.email);
+                Console.WriteLine("contacts sucessfully entered:");
             }
         }
+     
+        
     }
 }
 
