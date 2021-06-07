@@ -6,18 +6,13 @@ namespace AddressBookProgram
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("welcome to AddressBookSystem");
-            ContactDetails contact = new ContactDetails
-              ( "Sree","Ramu", "NehruColony","Hyderabad","Telangana",
-                       "akhila@gmail.com",509132,67834215678);
-            contact.Addressbook();
             
-            Console.WriteLine(contact.firstname+ "" + contact.lastname);
-            Console.WriteLine (contact.address +"" +contact.state );
-            Console.WriteLine(contact.city + "");
-            Console.WriteLine(contact.email + "");
-            Console.WriteLine(contact.zipcode + "");
-            Console.WriteLine (""+contact.phonenumber);
+            Console.WriteLine("Welcome to AddressBook system");
+            //getting contact details
+            AddressBook addressBook = new AddressBook();           
+            addressBook.addContacts("Akhila", "Reddy", "Gadwal", "Hyderabad", "Telangana","akhila@gmail.com", 509134, 1234567890);            
+            addressBook.print();
+            Console.ReadLine();
         }
     }
 }
