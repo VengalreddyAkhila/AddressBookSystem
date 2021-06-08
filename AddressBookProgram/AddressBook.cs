@@ -144,7 +144,7 @@ namespace AddressBookProgram
                         string email = Console.ReadLine();
                         contactToBeEdited.email = email;
                         break;
-                    //if Done
+                    //editing is Done
                     case 9:
                         Console.WriteLine("Editing done.New Contacts :-");
                         this.printSpecificContact(contactToBeEdited);
@@ -164,6 +164,29 @@ namespace AddressBookProgram
             Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
             Console.WriteLine("Email id: " + contact.email);
         }
+        /// <summary>
+        /// Deleting the contacts in list
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        public void delete(string firstName, string lastName)
+        {
+            Contact contactToBeDeleted = null;
+            foreach (Contact contact in this.contactList)
+            {
+                if (contact.fistName == firstName && contact.lastName == lastName)
+                {                    
+                    contactToBeDeleted = contact;
+                    this.contactList.Remove(contactToBeDeleted);
+                    break;
+                }
+            }
+            if (contactToBeDeleted == null)
+                Console.WriteLine("No such contact exists");
+            else
+                Console.WriteLine("Deletion Done.");
+        }
+
     }
 }
 
