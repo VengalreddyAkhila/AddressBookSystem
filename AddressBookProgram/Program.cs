@@ -6,10 +6,16 @@ namespace AddressBookProgram
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to AddressBook system");
-            //getting contact details
+            Console.WriteLine("Welcome to AddressBook system");            
             AddressBook addressBook = new AddressBook();
-            addressBook.addContacts("Akhila", "Reddy", "Gadwal", "Hyderabad", "Telangana", 1234567, 899000890, "akhila@gmail.com");
+            //adding multiple contacts in the list
+            Console.WriteLine("Enter how many contacts you want to add");
+            int number = Convert.ToInt32(Console.ReadLine());
+            for (int i = 1; i <= number; i++)
+            {
+                AddingContactsToList(addressBook);
+            }           
+            addressBook.print();            
             /// <summary>
             /// Adding contacts to addressbook
             /// </summary>
@@ -29,31 +35,26 @@ namespace AddressBookProgram
                 Console.WriteLine("Enter Email id");
                 string email = Console.ReadLine();
                 Console.WriteLine("Enter Zipcode");
-                int zipcode = Convert.ToInt32(Console.ReadLine());
+                long zipcode = long.Parse(Console.ReadLine());
                 Console.WriteLine("Enter PhoneNumber");
                 long phoneNumber = long.Parse(Console.ReadLine());
                 addressBook.addContacts(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
                 Console.ReadLine();
-            }    
-            //AddingContactsToList(addressBook);
-            //addressBook.print();
-            // editing contacts in the list
-            Console.WriteLine("What you want to perform ? Press 1 for Edit the details ,\n Press 2 for Delete  details : ");
-            int Selectchoice = Convert.ToInt32(Console.ReadLine());
-            switch (Selectchoice)
+            }
+                
+            Console.WriteLine(" Press 1 for Edit the details ,\n Press 2 for Delete the details : ");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
             {
+                   // editing the contacts in  list
                 case 1:
-                    AddingContactsToList(addressBook);
-                    addressBook.print();
-                    break;
-
-                case 2:
                     Console.WriteLine("Enter FirstName of Contact to be edited");
                     string firstNameOfContactToBeEdited = Console.ReadLine();
                     Console.WriteLine("Enter LastName of Contact to be edited");
                     string lastNameOfContactToBeEdited = Console.ReadLine();
                     break;
-                case 3:
+                    //deleting the contacts in list
+                case 2:                    
                     Console.WriteLine("Enter FirstName of Contact to be deleted");
                     string firstNameOfContactToBeDeleted = Console.ReadLine();
                     Console.WriteLine("Enter LastName of Contact to be deleted");
@@ -61,7 +62,7 @@ namespace AddressBookProgram
                     addressBook.delete(firstNameOfContactToBeDeleted, lastNameOfContactToBeDeleted);
                     break;
                 default:
-                    Console.WriteLine("Please enter the valid number : ");
+                    Console.WriteLine("Invalid choice : ");
                     break;
             }
             Console.ReadLine();

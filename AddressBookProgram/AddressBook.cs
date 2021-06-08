@@ -28,7 +28,7 @@ namespace AddressBookProgram
         /// <param name="zipcode"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
-        public void addContacts(string fistName, string lastName, string address, string city, string state, int zipcode, long phoneNumber, string email)
+        public void addContacts(string fistName, string lastName, string address, string city, string state, long zipcode, long phoneNumber, string email)
         {           
             Contact contact = new Contact();            
             contact.fistName = fistName;
@@ -129,7 +129,7 @@ namespace AddressBookProgram
                     // Edit Zipcode
                     case 6:
                         Console.WriteLine("Enter new Zip");
-                        int zipcode = Convert.ToInt32(Console.ReadLine());
+                        long zipcode = long.Parse(Console.ReadLine());
                         contactToBeEdited.zipcode = zipcode;
                         break;
                     // Edit Phone NUmber
