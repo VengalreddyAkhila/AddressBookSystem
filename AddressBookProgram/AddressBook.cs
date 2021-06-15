@@ -28,7 +28,7 @@ namespace AddressBookProgram
         /// <param name="zipcode"></param>
         /// <param name="phoneNumber"></param>
         /// <param name="email"></param>
-        public void addContacts(string fistName, string lastName, string address, string city, string state, long zipcode, long phoneNumber, string email)
+        public void Contact(string fistName, string lastName, string address, string city, string state, long zipcode, long phoneNumber, string email)
         {           
             Contact contact = new Contact();            
             contact.fistName = fistName;
@@ -42,19 +42,13 @@ namespace AddressBookProgram
           
             contactList.Add(contact);
         }       
-        public void print()
+        public void Display()
         {
             //using foreach loop  calling the variables
             foreach (Contact contact in contactList)
             {                
-                Console.WriteLine("FirstName: " + contact.fistName);
-                Console.WriteLine("LastName: " + contact.lastName);
-                Console.WriteLine("Address: " + contact.address);
-                Console.WriteLine("City: " + contact.city);
-                Console.WriteLine("State: " + contact.state);
-                Console.WriteLine("Zipcode: " + contact.zipcode);
-                Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
-                Console.WriteLine("Email id: " + contact.email);
+                Console.WriteLine($"FirstName: { contact.fistName}\n LastName: { contact.lastName}\n Address: {contact.address}");               
+                Console.WriteLine($"City: {contact.city}\n State: {contact.state}\n Zipcode: {contact.zipcode}\n PhoneNumber: {contact.phoneNumber}\n Email id: {contact.email}\n");                
             }
         }
 
@@ -63,106 +57,90 @@ namespace AddressBookProgram
         /// </summary>
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
-        public void edit(string firstName, string lastName)
+        public void Edit(string firstName, string lastName)
         {           
-            Contact contactToBeEdited = null;           
+            Contact Editedcontact = null;
             foreach (Contact contact in this.contactList)
             {
                 if (contact.fistName == firstName && contact.lastName == lastName)
-                    contactToBeEdited = contact;
+                    this.editContact(Editedcontact);
             }
-            // if First Name And last name is not match with entered data gives error
-            if (contactToBeEdited == null)
-            {                
-                Console.WriteLine("No such contact exists");
-                return;
-            }           
-            this.editThisContact(contactToBeEdited);
         }
-        public void editThisContact(Contact contactToBeEdited)
-        {            
-            while (true)
-            {                
-                Console.WriteLine("Enter 1 to edit FirstName");
-                Console.WriteLine("Enter 2 to edit LastName");
-                Console.WriteLine("Enter 3 to edit Address");
-                Console.WriteLine("Enter 4 to edit City");
-                Console.WriteLine("Enter 5 to edit State");
-                Console.WriteLine("Enter 6 to edit Zip");
-                Console.WriteLine("Enter 7 to edit PhoneNumber");
-                Console.WriteLine("Enter 8 to edit Email Id");
-                Console.WriteLine("Enter 9 if Editing is done");
-               
-                int choice = Convert.ToInt32(Console.ReadLine());                
+        public void editContact(Contact Editedcontact)
+        {
+            bool status = true;
+
+            while (status == true)
+            {
+
+                Console.WriteLine($"Enter 1 to edit FirstName \n Enter 2 to edit LastName \n Enter 3 to edit Address \n Enter 4 to edit City \n");
+                Console.WriteLine($"Enter 5 to edit State \n Enter 6 to edit Zip \n Enter 7 to edit PhoneNumber \n Enter 8 to edit Email Id \n Enter 9 if Editing is done \n");
+
+                int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     // Edit FirstName
                     case 1:
                         Console.WriteLine("Enter new FirstName");
-                        string fName = Console.ReadLine();
-                        contactToBeEdited.fistName = fName;
+                        string firstName = Console.ReadLine();
+                        Editedcontact.fistName = firstName;
                         break;
                     // edit Lastlame
                     case 2:
                         Console.WriteLine("Enter new LastName");
-                        string lName = Console.ReadLine();
-                        contactToBeEdited.lastName = lName;
+                        string lastName = Console.ReadLine();
+                        Editedcontact.lastName = lastName;
                         break;
                     // Edit Address
                     case 3:
                         Console.WriteLine("Enter new Address");
                         string address = Console.ReadLine();
-                        contactToBeEdited.address = address;
+                        Editedcontact.address = address;
                         break;
                     // Edit City
                     case 4:
                         Console.WriteLine("Enter new City");
                         string city = Console.ReadLine();
-                        contactToBeEdited.city = city;
+                        Editedcontact.city = city;
                         break;
                     // Edit State
                     case 5:
                         Console.WriteLine("Enter new State");
                         string state = Console.ReadLine();
-                        contactToBeEdited.state = state;
+                        Editedcontact.state = state;
                         break;
                     // Edit Zipcode
                     case 6:
                         Console.WriteLine("Enter new Zip");
                         long zipcode = long.Parse(Console.ReadLine());
-                        contactToBeEdited.zipcode = zipcode;
+                        Editedcontact.zipcode = zipcode;
                         break;
                     // Edit Phone NUmber
                     case 7:
                         Console.WriteLine("Enter new PhoneNumber");
                         long phoneNumber = long.Parse(Console.ReadLine());
-                        contactToBeEdited.phoneNumber = phoneNumber;
+                        Editedcontact.phoneNumber = phoneNumber;
                         break;
                     // Edit Email ID
                     case 8:
                         Console.WriteLine("Enter new Email Id");
                         string email = Console.ReadLine();
-                        contactToBeEdited.email = email;
+                        Editedcontact.email = email;
                         break;
                     //editing is Done
                     case 9:
-                        Console.WriteLine("Editing done.New Contacts :-");
-                        this.printSpecificContact(contactToBeEdited);
+                        Console.WriteLine("New Contacts :-");
+                        this.printNewContactList(Editedcontact);
                         return;
+
                 }
             }
         }
         //Print list After Edit
-        public void printSpecificContact(Contact contact)
+        public void printNewContactList(Contact contact)
         {
-            Console.WriteLine("FirstName: " + contact.fistName);
-            Console.WriteLine("LastName: " + contact.lastName);
-            Console.WriteLine("Address: " + contact.address);
-            Console.WriteLine("City: " + contact.city);
-            Console.WriteLine("State: " + contact.state);
-            Console.WriteLine("Zip: " + contact.zipcode);
-            Console.WriteLine("PhoneNumber: " + contact.phoneNumber);
-            Console.WriteLine("Email id: " + contact.email);
+            Console.WriteLine($"FirstName:  + { contact.fistName}\n LastName: + { contact.lastName}\n Address: + {contact.address}\n");
+            Console.WriteLine($"City: + {contact.city}\n State:  + {contact.state}\n Zipcode: + {contact.zipcode}\n PhoneNumber: + {contact.phoneNumber}\n Email id: + {contact.email}\n");            
         }
         /// <summary>
         /// Deleting the contacts in list
@@ -171,22 +149,22 @@ namespace AddressBookProgram
         /// <param name="lastName"></param>
         public void delete(string firstName, string lastName)
         {
-            Contact contactToBeDeleted = null;
+            Contact contactDeleted = null;
             foreach (Contact contact in this.contactList)
             {
                 if (contact.fistName == firstName && contact.lastName == lastName)
                 {                    
-                    contactToBeDeleted = contact;
-                    this.contactList.Remove(contactToBeDeleted);
+                    contactDeleted = contact;
+                    this.contactList.Remove(contactDeleted);
                     break;
                 }
             }
-            if (contactToBeDeleted == null)
-                Console.WriteLine("No such contact exists");
+            if (contactDeleted == null)
+                Console.WriteLine("No contact exists");
             else
-                Console.WriteLine("Deletion Done.");
+                Console.WriteLine("Deleted");
         }
-
+      
     }
 }
 
