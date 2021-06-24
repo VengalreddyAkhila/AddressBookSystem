@@ -8,18 +8,15 @@ namespace AddressBookProgram
         {
             Console.WriteLine("Welcome to AddressBook system");
             AddressBook addressBook = new AddressBook();
-            //adding multiple contacts in the list
-            Console.WriteLine("Enter how many contacts you want to add");
+
+            Console.WriteLine("Enter how many contacts you want to aadd");
             int number = Convert.ToInt32(Console.ReadLine());
             for (int i = 1; i <= number; i++)
             {
                 AddingContactsToList(addressBook);
             }
             addressBook.Display();
-            /// <summary>
-            /// Adding contacts to addressbook
-            /// </summary>
-            /// <param name="addressBook"></param>
+            // Adding contacts to addressbook
             static void AddingContactsToList(AddressBook addressBook)
             {
                 Console.WriteLine("Enter FirstName");
@@ -35,44 +32,33 @@ namespace AddressBookProgram
                 Console.WriteLine("Enter Email id");
                 string email = Console.ReadLine();
                 Console.WriteLine("Enter Zipcode");
-                int zipcode = Convert.ToInt32(Console.ReadLine());
+                long zipcode = long.Parse(Console.ReadLine());
                 Console.WriteLine("Enter PhoneNumber");
                 long phoneNumber = long.Parse(Console.ReadLine());
                 addressBook.Contact(firstName, lastName, address, city, state, zipcode, phoneNumber, email);
                 Console.ReadLine();
             }
-
-            Console.WriteLine(" Press 1 for Edit the details ,\n Press 2 for Delete the details : ");
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)
-            {
-                // editing the contacts in  list
-                case 1:
-                    Console.WriteLine("Enter FirstName of Contact to be edited");
-                    string firstNameOfEditedcontacts = Console.ReadLine();
-                    Console.WriteLine("Enter LastName of Contact to be edited");
-                    string lastNameOfEditedcontacts = Console.ReadLine();
-                    break;
-                //deleting the contacts in list
-                case 2:
-                    Console.WriteLine("Enter FirstName of Contact to be deleted");
-                    string firstNameDeleted = Console.ReadLine();
-                    Console.WriteLine("Enter LastName of Contact to be deleted");
-                    string lastNameDeleted = Console.ReadLine();
-                    addressBook.delete(firstNameDeleted, lastNameDeleted);
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice : ");
-            
-                    break;
-            }
-            Console.ReadLine();
+            addressBook.Search();
+            //editing the contact detail
+            addressBook.EditContact();
+            addressBook.Display();
+            //deleting the contact details              
+            addressBook.Delete();
+           
         }
-
     }
-
-
-
-
 }
+                   
+                    
+            
+
+           
+        
+
+    
+
+
+
+
+
 
